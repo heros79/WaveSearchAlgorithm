@@ -10,72 +10,33 @@ import static org.junit.Assert.fail;
  */
 public class WaveSearchTest {
 
-    int testArray[][] = new int [7][7];
-
     @Test
-    public void searchStartPointTest() {
-        for (int i = 0; i < testArray.length; i ++) {
-            for (int j = 0; j < testArray[i].length; j ++) {
-                testArray[i][j] = -1;
-            }
-        }
+    public void searchMinimalStepTest() {
 
-        try {
-            new WaveSearch(testArray);
-            fail("The Field haven`t start point");
-        }
-        catch (IllegalArgumentException e) {
-        }
-    }
+        int testWallCoordinate [][] = {{1,0}, {1,1}, {1,2}, {1,3}, {1,4}, {1,5},
+                {3,1}, {3,2}, {3,3}, {3,4}, {3,5}, {3,6},
+                {5,1}, {5,2}, {5,3}, {5,4}, {5,5}, {6,5}};
 
-    @Test
-    public void searchMinimalStep() {
-        for (int i = 0; i < testArray.length; i ++) {
-            for (int j = 0; j < testArray[i].length; j ++) {
-                testArray[i][j] = -1;
-            }
-        }
+        WaveSearch waveSearch = new WaveSearch(7,7, testWallCoordinate);
 
-        /*Start point*/
-        testArray[0][0] = 0;
 
-        /*End point*/
-        testArray[6][6] = -3;
 
-        /*Pain wall*/
-        testArray[1][0] = testArray[1][1] = testArray[1][2] = testArray[1][3] = testArray[1][4] = testArray[1][5] =
-        testArray[3][1] = testArray[3][2] = testArray[3][3] = testArray[3][4] = testArray[3][5] = testArray[3][6] =
-        testArray[5][1] = testArray[5][2] = testArray[5][3] = testArray[5][4] = testArray[5][5] = testArray[6][5] = -2;
-
-        WaveSearch waveSearch = new WaveSearch(testArray);
-        waveSearch.searchMinimalStep(testArray);
+        waveSearch.searchMinimalStep(0,0,6,6);
         assertEquals(waveSearch.getStep(), 24);
         System.out.println("The shortest path consists of " + waveSearch.getStep() + " movements");
     }
 
     @Test
-    public void searchShortWay() {
-        for (int i = 0; i < testArray.length; i ++) {
-            for (int j = 0; j < testArray[i].length; j ++) {
-                testArray[i][j] = -1;
-            }
-        }
-
-        /*Start point*/
-        testArray[0][0] = 0;
-
-        /*End point*/
-        testArray[6][6] = -3;
-
-        /*Pain wall*/
-        testArray[1][0] = testArray[1][1] = testArray[1][2] = testArray[1][3] = testArray[1][4] = testArray[1][5] =
-        testArray[3][1] = testArray[3][2] = testArray[3][3] = testArray[3][4] = testArray[3][5] = testArray[3][6] =
-        testArray[5][1] = testArray[5][2] = testArray[5][3] = testArray[5][4] = testArray[5][5] = testArray[6][5] = -2;
+    public void searchShortWayTest() {
 
         long startTime = System.currentTimeMillis();
 
-        WaveSearch waveSearch = new WaveSearch(testArray);
-        waveSearch.searchShortWay(testArray);
+        int testWallCoordinate [][] = {{1,0}, {1,1}, {1,2}, {1,3}, {1,4}, {1,5},
+                {3,1}, {3,2}, {3,3}, {3,4}, {3,5}, {3,6},
+                {5,1}, {5,2}, {5,3}, {5,4}, {5,5}, {6,5}};
+
+        WaveSearch waveSearch = new WaveSearch(7, 7, testWallCoordinate);
+        waveSearch.searchShortWay(0, 0, 6, 6);
         assertEquals(waveSearch.getPath().size(), 24);
 
         System.out.println(String.format("Path search took %d milis", System.currentTimeMillis() - startTime));

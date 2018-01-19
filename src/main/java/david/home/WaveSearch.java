@@ -6,127 +6,146 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by David on 1/18/2018.
+ * The class (@code WaveSearch) contains two methods, to find a short path from the
+ * starting point to the end, bypassing the effects.
+ * <p>
+ * <p>This class has an auxiliary class (@WaveSearchUtility code), for filling the field
+ * with obstacles and for indicating the start and end points of the path.
+ * <p>
+ * Created by (@author David Karchikyan) on 1/18/2018.
+ *
+ * @since JDK1.6
  */
+
 public class WaveSearch {
 
     private List<WaveSearch.Point> pointsList;
     private List<WaveSearch.Point> path;
     private int step;
 
-    public WaveSearch(int field [][]) {
+
+    /**
+     * The constructor creates an object with a field filled with obstacles
+     *
+     * @param fieldWidth  field width size
+     * @param fieldHeight field height size
+     * @param wallPlacing two-dimensional array with the coordinates of the walls,
+     *                    an example int testWallCoordinate [][] = {{1,0}, {1,1}, {1,2}, {1,3}, {1,4}, {1,5}};
+     */
+    public WaveSearch(int fieldWidth, int fieldHeight, int wallPlacing[][]) {
         pointsList = new ArrayList<WaveSearch.Point>();
         path = new ArrayList<WaveSearch.Point>();
-        searchStartPoint(field);
+        WaveSearchUtility.fillField(fieldWidth, fieldHeight);
+        WaveSearchUtility.wallArrangement(wallPlacing);
     }
 
-    public void searchStartPoint (int field [] []) {
+    /**
+     * The method of finding the minimum number of moves, from the initial to the end point
+     *
+     * @param startPointXCoordinate coordinate of the width of the starting point
+     * @param startPointYCoordinate the height coordinate of the starting point
+     * @param endPointXCoordinate   coordinate of the width of the end point
+     * @param endPointYCoordinate   coordinate of the height of the end point
+     */
+    public void searchMinimalStep(int startPointXCoordinate, int startPointYCoordinate, int endPointXCoordinate, int endPointYCoordinate) {
 
-            for (int i = 0; i < field.length; i++) {
-                for (int j = 0; j < field[i].length; j++) {
-                    if (field[i][j] == 0) {
-                        pointsList.add(new Point(i, j));
-                    }
-                }
-            }
-            if (pointsList.size() < 1) {
-                throw new IllegalArgumentException("Field must be start point");
-            }
-
-    }
-
-    /* The method of finding the minimum number of moves, from the initial to the end point */
-    public void searchMinimalStep(int field [] []) {
-
+        WaveSearchUtility.startPointArrangement(startPointXCoordinate, startPointYCoordinate);
+        WaveSearchUtility.endPointArrangement(endPointXCoordinate, endPointYCoordinate);
+        pointsList.add(new Point(startPointXCoordinate, startPointYCoordinate));
         int i = 0;
 
         while (true) {
-            if (pointsList.get(i).x < field.length - 1
-                    && field[pointsList.get(i).x + 1][pointsList.get(i).y] == -1) {
-                field[pointsList.get(i).x + 1][pointsList.get(i).y] = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+            if (pointsList.get(i).x < WaveSearchUtility.getField().length - 1
+                    && WaveSearchUtility.getField()[pointsList.get(i).x + 1][pointsList.get(i).y] == -1) {
+                WaveSearchUtility.getField()[pointsList.get(i).x + 1][pointsList.get(i).y] = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 pointsList.add(new Point(pointsList.get(i).x + 1, pointsList.get(i).y));
-            } else if (pointsList.get(i).x < field.length - 1
-                    && field[pointsList.get(i).x + 1][pointsList.get(i).y] == -3) {
+            } else if (pointsList.get(i).x < WaveSearchUtility.getField().length - 1
+                    && WaveSearchUtility.getField()[pointsList.get(i).x + 1][pointsList.get(i).y] == -3) {
                 path.add(new Point(pointsList.get(i).x + 1, pointsList.get(i).y));
                 path.add(new Point(pointsList.get(i).x, pointsList.get(i).y));
-                step = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+                step = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 break;
             }
             if (pointsList.get(i).x > 0
-                    && field[pointsList.get(i).x - 1][pointsList.get(i).y] == -1) {
-                field[pointsList.get(i).x - 1][pointsList.get(i).y] = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+                    && WaveSearchUtility.getField()[pointsList.get(i).x - 1][pointsList.get(i).y] == -1) {
+                WaveSearchUtility.getField()[pointsList.get(i).x - 1][pointsList.get(i).y] = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 pointsList.add(new Point(pointsList.get(i).x - 1, pointsList.get(i).y));
             } else if (pointsList.get(i).x > 0
-                    && field[pointsList.get(i).x - 1][pointsList.get(i).y] == -3) {
+                    && WaveSearchUtility.getField()[pointsList.get(i).x - 1][pointsList.get(i).y] == -3) {
                 path.add(new Point(pointsList.get(i).x - 1, pointsList.get(i).y));
                 path.add(new Point(pointsList.get(i).x, pointsList.get(i).y));
-                step = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+                step = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 break;
             }
-            if (pointsList.get(i).y < field[0].length - 1
-                    && field[pointsList.get(i).x][pointsList.get(i).y + 1] == -1) {
-                field[pointsList.get(i).x][pointsList.get(i).y + 1] = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+            if (pointsList.get(i).y < WaveSearchUtility.getField()[0].length - 1
+                    && WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y + 1] == -1) {
+                WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y + 1] = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 pointsList.add(new Point(pointsList.get(i).x, pointsList.get(i).y + 1));
-            } else if (pointsList.get(i).y < field[0].length - 1
-                    && field[pointsList.get(i).x][pointsList.get(i).y + 1] == -3) {
+            } else if (pointsList.get(i).y < WaveSearchUtility.getField()[0].length - 1
+                    && WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y + 1] == -3) {
                 path.add(new Point(pointsList.get(i).x, pointsList.get(i).y + 1));
                 path.add(new Point(pointsList.get(i).x, pointsList.get(i).y));
-                step = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+                step = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 break;
             }
             if (pointsList.get(i).y > 0
-                    && field[pointsList.get(i).x][pointsList.get(i).y - 1] == -1) {
-                field[pointsList.get(i).x][pointsList.get(i).y - 1] = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+                    && WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y - 1] == -1) {
+                WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y - 1] = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 pointsList.add(new Point(pointsList.get(i).x, pointsList.get(i).y - 1));
             } else if (pointsList.get(i).y > 0
-                    && field[pointsList.get(i).x][pointsList.get(i).y - 1] == -3) {
+                    && WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y - 1] == -3) {
                 path.add(new Point(pointsList.get(i).x, pointsList.get(i).y - 1));
                 path.add(new Point(pointsList.get(i).x, pointsList.get(i).y));
-                step = field[pointsList.get(i).x][pointsList.get(i).y] + 1;
+                step = WaveSearchUtility.getField()[pointsList.get(i).x][pointsList.get(i).y] + 1;
                 break;
             }
 
             i++;
 
-            if (i >= field.length * field[0].length) {
-                throw new IllegalArgumentException("Field must be End point");
-            }
         }
     }
 
-    /* The method of finding the shortest path, from the initial to the final point, with the derivation of the coordinates of displacements */
-    public void searchShortWay (int field [] []) {
+    /**
+     * The method of finding the shortest path, from the initial to the final point,
+     * with the derivation of the coordinates of displacements
+     *
+     * @param startPointXCoordinate coordinate of the width of the starting point
+     * @param startPointYCoordinate the height coordinate of the starting point
+     * @param endPointXCoordinate   coordinate of the width of the end point
+     * @param endPointYCoordinate   coordinate of the height of the end point
+     * */
+    public void searchShortWay(int startPointXCoordinate, int startPointYCoordinate, int endPointXCoordinate, int endPointYCoordinate) {
 
-        searchMinimalStep(field);
+        searchMinimalStep(startPointXCoordinate, startPointYCoordinate, endPointXCoordinate, endPointYCoordinate);
 
         int i = 1;
 
         while (true) {
 
-            if (path.get(i).x < field.length - 1 && field[path.get(i).x + 1][path.get(i).y] == 0) {
+            if (path.get(i).x < WaveSearchUtility.getField().length - 1 && WaveSearchUtility.getField()[path.get(i).x + 1][path.get(i).y] == 0) {
                 break;
-            } else if (path.get(i).x < field.length - 1 && field[path.get(i).x][path.get(i).y] == field[path.get(i).x + 1][path.get(i).y] + 1) {
+            } else if (path.get(i).x < WaveSearchUtility.getField().length - 1 && WaveSearchUtility.getField()[path.get(i).x][path.get(i).y] == WaveSearchUtility.getField()[path.get(i).x + 1][path.get(i).y] + 1) {
                 path.add(new Point(path.get(i).x + 1, path.get(i).y));
                 i++;
                 continue;
             }
-            if (path.get(i).x > 0 && field[path.get(i).x - 1][path.get(i).y] == 0) {
+            if (path.get(i).x > 0 && WaveSearchUtility.getField()[path.get(i).x - 1][path.get(i).y] == 0) {
                 break;
-            } else if (path.get(i).x > 0 && field[path.get(i).x][path.get(i).y] == field[path.get(i).x - 1][path.get(i).y] + 1) {
+            } else if (path.get(i).x > 0 && WaveSearchUtility.getField()[path.get(i).x][path.get(i).y] == WaveSearchUtility.getField()[path.get(i).x - 1][path.get(i).y] + 1) {
                 path.add(new Point(path.get(i).x - 1, path.get(i).y));
                 i++;
                 continue;
             }
-            if (path.get(i).y < field[0].length - 1 && field[path.get(i).x][path.get(i).y + 1] == 0) {
+            if (path.get(i).y < WaveSearchUtility.getField()[0].length - 1 && WaveSearchUtility.getField()[path.get(i).x][path.get(i).y + 1] == 0) {
                 break;
-            } else if (path.get(i).y < field[0].length - 1 && field[path.get(i).x][path.get(i).y] == field[path.get(i).x][path.get(i).y + 1] + 1) {
+            } else if (path.get(i).y < WaveSearchUtility.getField()[0].length - 1 && WaveSearchUtility.getField()[path.get(i).x][path.get(i).y] == WaveSearchUtility.getField()[path.get(i).x][path.get(i).y + 1] + 1) {
                 path.add(new Point(path.get(i).x, path.get(i).y + 1));
                 i++;
                 continue;
             }
-            if (path.get(i).y > 0 && field[path.get(i).x][path.get(i).y - 1] == 0) {
+            if (path.get(i).y > 0 && WaveSearchUtility.getField()[path.get(i).x][path.get(i).y - 1] == 0) {
                 break;
-            } else if (path.get(i).y > 0 && field[path.get(i).x][path.get(i).y] == field[path.get(i).x][path.get(i).y - 1] + 1) {
+            } else if (path.get(i).y > 0 && WaveSearchUtility.getField()[path.get(i).x][path.get(i).y] == WaveSearchUtility.getField()[path.get(i).x][path.get(i).y - 1] + 1) {
                 path.add(new Point(path.get(i).x, path.get(i).y - 1));
                 i++;
                 continue;
@@ -134,7 +153,6 @@ public class WaveSearch {
         }
 
         Collections.reverse(path);
-
     }
 
     /* Outputting coordinates of the path to the console */
@@ -165,6 +183,7 @@ public class WaveSearch {
 
     private static class Point {
         public int x, y;
+
         public Point(int x, int y) {
             this.x = x;
             this.y = y;
