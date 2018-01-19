@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25aa91eb-48d9-4573-9da2-048e8e717b2b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WaveSearchAlgorithm/.gitignore" afterPath="$PROJECT_DIR$/../WaveSearchAlgorithm/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearchUtility.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WaveSearchAlgorithm/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../WaveSearchAlgorithm/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearch.java" afterPath="$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WaveSearchAlgorithm/src/test/java/david/home/WaveSearchTest.java" afterPath="$PROJECT_DIR$/../WaveSearchAlgorithm/src/test/java/david/home/WaveSearchTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../WaveSearchAlgorithm/out/" />
     <ignored path="$PROJECT_DIR$/../WaveSearchAlgorithm/target/" />
@@ -19,10 +17,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WaveSearch.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WaveSearch.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="-323">
               <caret line="8" column="11" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="17" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -31,7 +29,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WaveSearchUtility.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WaveSearchUtility.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearchUtility.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-452">
@@ -755,7 +753,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1516264583549</updated>
-      <workItem from="1516264590949" duration="27121000" />
+      <workItem from="1516264590949" duration="27725000" />
     </task>
     <servers />
   </component>
@@ -792,7 +790,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27121000" />
+    <option name="totallyTimeSpent" value="27725000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1040" extended-state="6" />
@@ -813,7 +811,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12540454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22815534" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -912,16 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="11" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="17" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearchUtility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-452">
@@ -929,6 +917,16 @@
           <folding>
             <element signature="e#2501#2502#0" expanded="true" />
             <element signature="e#2529#2530#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../WaveSearchAlgorithm/src/main/java/david/home/WaveSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="17" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
